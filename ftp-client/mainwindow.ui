@@ -6,6 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
+<<<<<<< HEAD
     <width>615</width>
     <height>367</height>
    </rect>
@@ -166,6 +167,18 @@
     <string>Exit</string>
    </property>
   </action>
+=======
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QMenuBar" name="menubar"/>
+  <widget class="QStatusBar" name="statusbar"/>
+>>>>>>> 8f688f6a40c0472cf8cf13db8cb4833cf06bf39d
  </widget>
  <resources/>
  <connections/>
