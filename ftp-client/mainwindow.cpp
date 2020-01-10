@@ -4,10 +4,10 @@
  *
  *  @author     Gemuele Aludino, Patrick Nogaj
  *  @date       09 Jan 2020
- *  @copyright  Copyright © 2019 Gemuele Aludino, Patrick Nogaj
+ *  @copyright  Copyright © 2020 Gemuele Aludino, Patrick Nogaj
  */
 /**
- *  Copyright © 2020 Gemuele Aludino, Lorenzo Jimenez, Anton Ryjov
+ *  Copyright © 2020 Gemuele Aludino, Patrick Nogaj
  *
  *  Permission is hereby granted, free of charge, to any person obtaining
  *  a copy of this software and associated documentation files (the "Software"),

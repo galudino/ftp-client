@@ -1,10 +1,10 @@
 /**
- *  @file       mainwindow.h
- *  @brief      Header file
+ *  @file       socket.cpp
+ *  @brief      Socket source file
  *
- *  @author     Gemuele Aludino, Patrick Nogaj
+ *  @author     Gemuele Aludino
  *  @date       09 Jan 2020
- *  @copyright  Copyright © 2020 Gemuele Aludino, Patrick Nogaj
+ *  @copyright  Copyright © 2020 Gemuele Aludino
  */
 /**
  *  Copyright © 2020 Gemuele Aludino
@@ -28,24 +28,8 @@
  *  THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#include "socket.h"
 
-#include <QMainWindow>
+Socket::Socket(QObject *parent) : QObject(parent) {
 
-QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
-QT_END_NAMESPACE
-
-class MainWindow : public QMainWindow {
-    Q_OBJECT
-
-public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
-
-private:
-    Ui::MainWindow *ui;
-};
-
-#endif // MAINWINDOW_H
+}
