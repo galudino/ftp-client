@@ -32,21 +32,29 @@
 #define SOCKET_H
 
 #include <QObject>
+#include <QTcpSocket>
 #include <QWidget>
+
+#include <QDebug>
 
 namespace ntwk {
 class Socket;
 }
 
-class Socket : public QObject {
+/**
+ * @brief The ntwk::Socket class
+ */
+class ntwk::Socket : public QObject {
     Q_OBJECT
 public:
     explicit Socket(QObject *parent = nullptr);
+    ~Socket();
 
+    void doConnect();
 signals:
 
 private:
-
+    QTcpSocket *socket;
 };
 
 #endif // SOCKET_H

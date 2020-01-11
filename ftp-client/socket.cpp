@@ -30,6 +30,49 @@
 
 #include "socket.h"
 
-Socket::Socket(QObject *parent) : QObject(parent) {
+using ntwk::Socket;
 
+#define WEBSITE   "google.com"
+
+/**
+ * @brief Socket::Socket
+ * @param parent
+ */
+Socket::Socket(QObject *parent) : QObject(parent), socket(nullptr) {
+
+}
+
+/**
+ * @brief Socket::~Socket
+ */
+Socket::~Socket() {
+    delete socket;
+}
+
+/**
+ * @brief Socket::doConnect
+ */
+void Socket::doConnect() {
+    socket = new QTcpSocket(this);
+
+    socket->connectToHost(WEBSITE, 80);
+
+    if (socket->waitForConnected(5000)) {
+        qDebug() << "Connected!";
+
+        // send
+        socket->write("hello, server\r\n\r\n");
+        socket->waitForBytesWritten(1000);
+        socket->waitForReadyRead(3000);
+
+        qDebug() << "Reading: " << socket->bytesAvailable();
+
+        // get the data
+        qDebug() << socket->readAll();
+
+        // close the connection
+        socket->close();
+    } else {
+        qDebug() << "Not connected";
+    }
 }

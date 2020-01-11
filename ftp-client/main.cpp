@@ -30,13 +30,70 @@
 
 #include "mainwindow.h"
 
-#include <QApplication>
+#include "socket.h"
+#include "ftpgetter.h"
+#include "downloader.h"
 
+#include <QApplication>
+#include <QDir>
+
+#include <QDebug>
+
+namespace ntwk {
+    void downloader_test(void);
+}
+
+/**
+ * @brief   main    Program execution begins here
+ *
+ * @param   argc    sizeof(argv) / sizeof *argv, argument count
+ * @param   argv    Command line arguments
+ *
+ * @return  0 on success, else failure
+ */
 int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
 
     MainWindow w;
     w.show();
 
+    ntwk::downloader_test();
+
     return a.exec();
+}
+
+/**
+ * @brief ntwk::backend_test    Testing ntwk::Downloader class
+ */
+void ntwk::downloader_test() {
+    // backend code - downloads a file from a particular URL
+    // and streams the buffer to a file on the client's disk.
+
+    // destinationLocal determines where you want
+    // the target file to be saved.
+
+    // url is a string denoting the url of the target file.
+
+    // Determine where you want the destination file to live
+    QString destinationLocal = "/Users/gemuelealudino/Downloads";
+
+    // Provide the complete URL of the file you want to download
+    QString url = "https://raw.githubusercontent.com/galudino/gcslib/master/test__vptr/vector_ptr.h";
+
+    // Parse the filename from the URL (last occurence of file separator, plus 1);
+    QString separatorStr = QDir::separator();   // ensures portability
+    char separator = separatorStr.toStdString().c_str()[0];
+    const char *cstr = url.toStdString().c_str();
+
+    // advance return val of strrchr to skip over separator (get filename only)
+    QString filename = std::strrchr(cstr, separator) + 1;
+
+    // instantiate ntwk::Downloader
+    ntwk::Downloader d;
+
+    // provide the destination filepath here (extern QString from downloader.h)
+    ntwk::DownloadPath = destinationLocal + QDir::separator() + filename;
+
+    // provide the path of the file you wish to download
+    d.doDownload(url);
 }

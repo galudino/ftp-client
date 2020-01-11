@@ -31,12 +31,44 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include <QDialog>
+#include <QShortcut>
+
+#include <QDebug>
+
+/**
+ * @brief MainWindow::MainWindow
+ * @param parent
+ */
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow) {
     ui->setupUi(this);
+
+    ui->plainTextEdit->setTabChangesFocus(true);
+    ui->plainTextEdit_2->setTabChangesFocus(true);
+    ui->plainTextEdit_3->setTabChangesFocus(true);
+    ui->plainTextEdit_4->setTabChangesFocus(true);
+
+    dialog.setFixedSize(500, 100);
+    dialog.setModal(true);
+
+    QObject::connect(ui->pushButton,            // obj emitting a signal
+                     SIGNAL(clicked()),         // signal emitted
+                     this,                      // recipient obj of the signal
+                     SLOT(didPushButton()));    // slot function to run
 }
 
+/**
+ * @brief MainWindow::~MainWindow
+ */
 MainWindow::~MainWindow() {
     delete ui;
+}
+
+/**
+ * @brief MainWindow::didPushButton
+ */
+void MainWindow::didPushButton() {
+    dialog.show();
 }
